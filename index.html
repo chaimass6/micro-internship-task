@@ -3,104 +3,99 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MITS Haryana - Empowering the Future</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <title>Currency Converter</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
-    .mission {
-      background-color: #f0f8ff;
-      padding: 50px 0;
+    body {
+      background-color: #f2f2f2;
     }
-    .logos img {
-      width: 100px;
-      margin: 10px;
-      transition: transform 0.3s;
-    }
-    .logos img:hover {
-      transform: scale(1.1);
-    }
-    .stats-box {
-      background-color: #e9ecef;
+    .converter-box {
+      max-width: 500px;
+      margin: 100px auto;
+      padding: 30px;
+      background: white;
       border-radius: 10px;
-      padding: 25px;
-      margin: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .result {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-top: 20px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="#">MITS Haryana</a>
+  <div class="converter-box">
+    <h2 class="text-center mb-4">Currency Converter</h2>
+    
+    <div class="mb-3">
+      <label for="amount" class="form-label">Amount</label>
+      <input type="number" id="amount" class="form-control" placeholder="Enter amount" />
     </div>
-  </nav>
 
-  <!-- Hero Section -->
-  <header class="text-center bg-primary text-white py-5">
-    <div class="container">
-      <h1 class="display-4">Micro Information Technology Services</h1>
-      <p class="lead">Empowering students with real-world tech skills & global exposure</p>
-    </div>
-  </header>
-
-  <!-- Mission Section -->
-  <section class="mission text-center">
-    <div class="container">
-      <h2 class="mb-4">Our Mission</h2>
-      <p class="lead">
-        At MITS Haryana, our mission is to equip students with hands-on experience in the latest
-        technologies like Artificial Intelligence, Machine Learning, and Web Development. We aim to bridge the gap between academia and industry by offering
-        real-time internship programs and upskilling opportunities to build tomorrow's tech leaders.
-      </p>
-    </div>
-  </section>
-
-  <!-- University Affiliations -->
-  <section class="text-center my-5">
-    <div class="container">
-      <h3 class="mb-4">Student Collaborations With Top Universities</h3>
-      <div class="row justify-content-center logos">
-        <!-- Replace with real logos -->
-        <div class="col-4 col-md-2"><img src="https://via.placeholder.com/100?text=CU" alt="Chandigarh University Logo" /></div>
-        <div class="col-4 col-md-2"><img src="https://via.placeholder.com/100?text=DU" alt="Delhi University Logo" /></div>
-        <div class="col-4 col-md-2"><img src="https://via.placeholder.com/100?text=AMITY" alt="Amity University Logo" /></div>
-        <div class="col-4 col-md-2"><img src="https://via.placeholder.com/100?text=JNU" alt="Jawaharlal Nehru University Logo" /></div>
-        <div class="col-4 col-md-2"><img src="https://via.placeholder.com/100?text=IGNOU" alt="IGNOU Logo" /></div>
-        <div class="col-4 col-md-2"><img src="https://via.placeholder.com/100?text=IITD" alt="IIT Delhi Logo" /></div>
-        <div class="col-4 col-md-2"><img src="https://via.placeholder.com/100?text=LPU" alt="Lovely Professional University Logo" /></div>
-        <div class="col-4 col-md-2"><img src="https://via.placeholder.com/100?text=SRM" alt="SRM University Logo" /></div>
-        <div class="col-4 col-md-2"><img src="https://via.placeholder.com/100?text=MITWPU" alt="MIT-WPU Logo" /></div>
-        <div class="col-4 col-md-2"><img src="https://via.placeholder.com/100?text=VIT" alt="VIT University Logo" /></div>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="fromCurrency" class="form-label">From</label>
+        <select id="fromCurrency" class="form-select"></select>
+      </div>
+      <div class="col">
+        <label for="toCurrency" class="form-label">To</label>
+        <select id="toCurrency" class="form-select"></select>
       </div>
     </div>
-  </section>
 
-  <!-- Social Media Statistics -->
-  <section class="text-center mb-5">
-    <div class="container">
-      <h3 class="mb-4">Our Growing Social Impact</h3>
-      <div class="row justify-content-center">
-        <div class="col-md-4 stats-box">
-          <h4>LinkedIn Followers</h4>
-          <p class="display-6">15,000+</p>
-        </div>
-        <div class="col-md-4 stats-box">
-          <h4>Student Network</h4>
-          <p class="display-6">500+ Colleges</p>
-        </div>
-        <div class="col-md-4 stats-box">
-          <h4>Interns Trained</h4>
-          <p class="display-6">10,000+</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    <button onclick="convertCurrency()" class="btn btn-primary w-100">Convert</button>
 
-  <!-- Footer -->
-  <footer class="bg-dark text-white text-center py-3">
-    &copy; 2025 Micro Information Technology Services (MITS Haryana)
-  </footer>
+    <div class="result mt-4" id="result">Converted Amount: --</div>
+  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const fromCurrency = document.getElementById("fromCurrency");
+    const toCurrency = document.getElementById("toCurrency");
+    const result = document.getElementById("result");
+
+    const currencyList = ["USD", "INR", "EUR", "GBP", "CAD", "AUD", "JPY", "CNY", "SGD", "AED"];
+
+    // Populate dropdowns
+    currencyList.forEach(currency => {
+      const option1 = document.createElement("option");
+      option1.value = currency;
+      option1.text = currency;
+      fromCurrency.appendChild(option1);
+
+      const option2 = document.createElement("option");
+      option2.value = currency;
+      option2.text = currency;
+      toCurrency.appendChild(option2);
+    });
+
+    fromCurrency.value = "USD";
+    toCurrency.value = "INR";
+
+    async function convertCurrency() {
+      const amount = document.getElementById("amount").value;
+      const from = fromCurrency.value;
+      const to = toCurrency.value;
+
+      if (amount === "" || isNaN(amount)) {
+        alert("Please enter a valid amount");
+        return;
+      }
+
+      try {
+        const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${from}`);
+        const data = await response.json();
+        const rate = data.rates[to];
+        const converted = (amount * rate).toFixed(2);
+
+        result.innerText = `Converted Amount: ${converted} ${to}`;
+      } catch (error) {
+        result.innerText = "Error fetching exchange rate.";
+      }
+    }
+  </script>
 </body>
 </html>
+
