@@ -4,7 +4,7 @@ const result = document.getElementById("result");
 
 const currencyList = ["USD", "INR", "EUR", "GBP", "CAD", "AUD", "JPY", "CNY", "SGD", "AED"];
 
-// Populate dropdowns
+
 currencyList.forEach(currency => {
   const option1 = document.createElement("option");
   option1.value = currency;
