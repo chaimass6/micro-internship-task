@@ -4,98 +4,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Currency Converter</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <style>
-    body {
-      background-color: #f2f2f2;
-    }
-    .converter-box {
-      max-width: 500px;
-      margin: 100px auto;
-      padding: 30px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    .result {
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin-top: 20px;
-      text-align: center;
-    }
-  </style>
+  <link rel="stylesheet" href="index.css" />
 </head>
 <body>
-
-  <div class="converter-box">
-    <h2 class="text-center mb-4">Currency Converter</h2>
-    
-    <div class="mb-3">
-      <label for="amount" class="form-label">Amount</label>
-      <input type="number" id="amount" class="form-control" placeholder="Enter amount" />
-    </div>
-
-    <div class="row mb-3">
-      <div class="col">
-        <label for="fromCurrency" class="form-label">From</label>
-        <select id="fromCurrency" class="form-select"></select>
+  <div class="container">
+    <div class="converter-box">
+      <h1>🌍 Currency Converter</h1>
+      <div class="form-group">
+        <label for="amount">Amount</label>
+        <input type="number" id="amount" placeholder="Enter amount" />
       </div>
-      <div class="col">
-        <label for="toCurrency" class="form-label">To</label>
-        <select id="toCurrency" class="form-select"></select>
+
+      <div class="currency-select">
+        <div class="form-group">
+          <label for="fromCurrency">From</label>
+          <select id="fromCurrency"></select>
+        </div>
+        <div class="form-group">
+          <label for="toCurrency">To</label>
+          <select id="toCurrency"></select>
+        </div>
       </div>
+
+      <button onclick="convertCurrency()">Convert</button>
+      <div id="result">Converted Amount: --</div>
     </div>
-
-    <button onclick="convertCurrency()" class="btn btn-primary w-100">Convert</button>
-
-    <div class="result mt-4" id="result">Converted Amount: --</div>
   </div>
 
-  <script>
-    const fromCurrency = document.getElementById("fromCurrency");
-    const toCurrency = document.getElementById("toCurrency");
-    const result = document.getElementById("result");
-
-    const currencyList = ["USD", "INR", "EUR", "GBP", "CAD", "AUD", "JPY", "CNY", "SGD", "AED"];
-
-    // Populate dropdowns
-    currencyList.forEach(currency => {
-      const option1 = document.createElement("option");
-      option1.value = currency;
-      option1.text = currency;
-      fromCurrency.appendChild(option1);
-
-      const option2 = document.createElement("option");
-      option2.value = currency;
-      option2.text = currency;
-      toCurrency.appendChild(option2);
-    });
-
-    fromCurrency.value = "USD";
-    toCurrency.value = "INR";
-
-    async function convertCurrency() {
-      const amount = document.getElementById("amount").value;
-      const from = fromCurrency.value;
-      const to = toCurrency.value;
-
-      if (amount === "" || isNaN(amount)) {
-        alert("Please enter a valid amount");
-        return;
-      }
-
-      try {
-        const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${from}`);
-        const data = await response.json();
-        const rate = data.rates[to];
-        const converted = (amount * rate).toFixed(2);
-
-        result.innerText = `Converted Amount: ${converted} ${to}`;
-      } catch (error) {
-        result.innerText = "Error fetching exchange rate.";
-      }
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
 
