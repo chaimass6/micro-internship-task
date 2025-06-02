@@ -1,0 +1,90 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #1d4350, #a43931);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.container {
+  width: 100%;
+  padding: 20px;
+}
+
+.generator-box {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  max-width: 450px;
+  margin: auto;
+  padding: 30px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #ffd700;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  background: #fff;
+  color: #333;
+}
+
+.checkbox-group label {
+  display: block;
+  margin: 8px 0;
+  font-size: 0.95rem;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #ffd700;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+  color: #333;
+}
+
+button:hover {
+  background-color: #ffcc00;
+}
+
+.copy-btn {
+  background-color: #00bcd4;
+  color: white;
+}
+
+.copy-btn:hover {
+  background-color: #0097a7;
+}
+
+#passwordResult {
+  background: #fff;
+  color: #333;
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 15px;
+  font-weight: bold;
+  word-wrap: break-word;
+}
