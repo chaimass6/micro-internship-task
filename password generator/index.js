@@ -29,7 +29,6 @@ function generatePassword() {
 
   document.getElementById("passwordResult").innerText = password;
 }
-
 function copyPassword() {
   const passwordText = document.getElementById("passwordResult").innerText;
   if (passwordText && passwordText !== "Your password will appear here") {
